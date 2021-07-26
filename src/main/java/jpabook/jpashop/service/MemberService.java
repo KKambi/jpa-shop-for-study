@@ -5,7 +5,6 @@ import jpabook.jpashop.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.ObjectUtils;
 
 import java.util.List;
 
@@ -26,9 +25,9 @@ public class MemberService {
     }
 
     private void validateDuplicateMember(Member member) {
-        Member foundMember = memberRepository.findOne(member.getId());
+        List<Member> members = memberRepository.findByName(member.getName());
 
-        if (!ObjectUtils.isEmpty(foundMember)) {
+        if (members.size() > 0) {
             throw new IllegalStateException("이미 존재하는 회원입니다.");
         }
     }
