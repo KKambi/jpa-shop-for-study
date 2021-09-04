@@ -2,11 +2,13 @@ package jpabook.jpashop.domain.item;
 
 import jpabook.jpashop.domain.Category;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Getter
+@Setter
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "dtype")
 @Entity
